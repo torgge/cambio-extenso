@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SideNavOuterToolbarModule, SideNavInnerToolbarModule } from './layouts';
 import { FooterModule } from './shared/components/footer/footer.component';
+import { CambioService } from './shared/cambio.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { FooterModule } from './shared/components/footer/footer.component';
     SideNavInnerToolbarModule,
     FooterModule
   ],
-  providers: [],
+  providers: [CambioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

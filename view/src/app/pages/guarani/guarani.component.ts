@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CambioService } from 'src/app/shared/cambio.service';
 
 @Component({
   selector: 'app-guarani',
@@ -10,12 +11,14 @@ export class GuaraniComponent {
   extensoEntity: any;
   colCountByScreen: Object;
 
-  constructor() {
+  constructor(private service: CambioService) {
       this.extensoEntity = {
           Moeda: 'Guaraní',
           Valor: 10.001,
-          Extenso: 'Diez mil guaraníes y un...'
+          Extenso: ''
       };
+
+      this.extensoEntity.Extenso = this.service.getExtensoGuarani(this.extensoEntity.Valor);
   }
 
 }
