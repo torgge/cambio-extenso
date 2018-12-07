@@ -3,21 +3,17 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cambio": {
+    "moeda-extenso": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
-        }
-      },
+      "prefix": "geo",
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cambio",
+            "outputPath": "dist/moeda-extenso",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,10 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/devextreme/dist/css/dx.common.css",
-              "src/themes/generated/theme.additional.css",
-              "src/themes/generated/theme.base.css",
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -64,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cambio:build"
+            "browserTarget": "moeda-extenso:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cambio:build:production"
+              "browserTarget": "moeda-extenso:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cambio:build"
+            "browserTarget": "moeda-extenso:build"
           }
         },
         "test": {
@@ -86,7 +80,8 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css"
             ],
             "scripts": [],
             "assets": [
@@ -109,7 +104,7 @@
         }
       }
     },
-    "cambio-e2e": {
+    "moeda-extenso-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -118,11 +113,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cambio:serve"
+            "devServerTarget": "moeda-extenso:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cambio:serve:production"
+              "devServerTarget": "moeda-extenso:serve:production"
             }
           }
         },
@@ -138,5 +133,5 @@
       }
     }
   },
-  "defaultProject": "cambio"
+  "defaultProject": "moeda-extenso"
 }
