@@ -10,6 +10,9 @@ import { MenuComponent } from './menu/menu.component';
 import { ExtensoComponent } from './extenso/extenso.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
+import {CambioService} from './shared/cambio.service';
+import {MessageService} from './shared/message.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,9 +36,10 @@ import { MainComponent } from './main/main.component';
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatTreeModule
+    MatTreeModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MessageService, CambioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
