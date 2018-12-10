@@ -14,7 +14,7 @@ export class CambioService {
               private messageService: MessageService) {
   }
 
-  private rootLocation = `http://localhost:9797/extenso/v1`;
+  private rootLocation = `http://172.27.10.43:9797/extenso/v1`;
 
   private garaniLocation = (vlr: number) => this.rootLocation + `/guarani/${vlr}`;
 

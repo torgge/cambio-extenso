@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {CambioService} from '../shared/cambio.service';
 import {Observable} from 'rxjs';
@@ -9,8 +9,7 @@ import {Cambio} from '../shared/model/Cambio';
   templateUrl: './extenso.component.html',
   styleUrls: ['./extenso.component.css']
 })
-export class ExtensoComponent {
-  extenso$: Observable<any>;
+export class ExtensoComponent implements OnInit {
   private _prefix: string;
 
   cambioForm = this.fb.group({
@@ -20,6 +19,10 @@ export class ExtensoComponent {
   });
 
   constructor(private fb: FormBuilder, private service: CambioService) {
+  }
+
+  ngOnInit(): void {
+    this.changePrefix();
   }
 
   public getPrefix(): string {

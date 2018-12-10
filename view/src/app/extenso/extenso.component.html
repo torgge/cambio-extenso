@@ -9,7 +9,7 @@
         <div class="col">
           <mat-label>Moeda</mat-label>
           <mat-radio-group formControlName="moeda"
-            (change)="changePrefix()">
+                           (change)="changePrefix()">
             <!--<mat-radio-button value=0>Dólar</mat-radio-button>-->
             <mat-radio-button value=1 [checked]="true">Guaraní</mat-radio-button>
             <mat-radio-button value=2>Real</mat-radio-button>
@@ -20,7 +20,10 @@
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label>Valor</mat-label>
-            <input matInput formControlName="valor" type="number">
+            <input matInput
+                   formControlName="valor"
+                   type="number"
+                   >
             <span matPrefix [textContent]="getPrefix()"></span>
             <mat-icon matSuffix>attach_money</mat-icon>
           </mat-form-field>
