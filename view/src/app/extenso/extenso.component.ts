@@ -22,7 +22,7 @@ export class ExtensoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.changePrefix();
+    // this.changePrefix();
   }
 
   public getPrefix(): string {

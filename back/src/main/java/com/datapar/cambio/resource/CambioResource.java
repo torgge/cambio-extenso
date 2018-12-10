@@ -27,7 +27,7 @@ public class CambioResource {
     public ResponseEntity<Cambio> getCambioGuarani(@PathVariable("vlr") double vlr) {
         Cambio cambio = new Cambio();
         try {
-            log.info(String.format("Valor %f", vlr));
+            log.info(String.format("Valor Guaraní %f", vlr));
             cambio.setExtenso(service.getExtensoGuarani(vlr));
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -41,7 +41,7 @@ public class CambioResource {
     public ResponseEntity<Cambio> getCambioReal(@PathVariable("vlr") double vlr) {
         Cambio cambio = new Cambio();
         try {
-            log.info(String.format("Valor %f", vlr));
+            log.info(String.format("Valor Real %f", vlr));
             cambio.setExtenso(service.getExtensoReal(vlr));
         } catch (Exception e) {
             log.error(e.getMessage());

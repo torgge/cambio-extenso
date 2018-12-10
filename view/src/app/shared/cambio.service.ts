@@ -30,7 +30,7 @@ export class CambioService {
 
   public getExtenso(vlr: number, moeda: number): Observable<any> {
     console.log(`Moeda Selecionada`, moeda);
-    return moeda === 1 ? this.getExtensoGuarani(vlr) : this.getExtensoReal(vlr);
+    return Number(moeda) === 1 ? this.getExtensoGuarani(vlr) : this.getExtensoReal(vlr);
   }
 
   public getExtensoGuaraniV2(vlr: number): Observable<any> {
