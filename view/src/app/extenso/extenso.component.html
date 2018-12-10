@@ -1,16 +1,18 @@
 <form [formGroup]="cambioForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Moeda</mat-card-title>
+
     </mat-card-header>
 
     <mat-card-content>
       <div class="row">
         <div class="col">
-          <mat-radio-group formControlName="moeda">
-            <mat-radio-button value="0">Dólar</mat-radio-button>
-            <mat-radio-button value="1">Guaraní</mat-radio-button>
-            <mat-radio-button value="2">Real</mat-radio-button>
+          <mat-label>Moeda</mat-label>
+          <mat-radio-group formControlName="moeda"
+            (change)="changePrefix()">
+            <!--<mat-radio-button value=0>Dólar</mat-radio-button>-->
+            <mat-radio-button value=1 [checked]="true">Guaraní</mat-radio-button>
+            <mat-radio-button value=2>Real</mat-radio-button>
           </mat-radio-group>
         </div>
       </div>
@@ -19,8 +21,8 @@
           <mat-form-field class="full-width">
             <mat-label>Valor</mat-label>
             <input matInput formControlName="valor" type="number">
-            <span matPrefix>$&nbsp;</span>
-            <span matSuffix>,00</span>
+            <span matPrefix [textContent]="getPrefix()"></span>
+            <mat-icon matSuffix>attach_money</mat-icon>
           </mat-form-field>
         </div>
       </div>
@@ -40,3 +42,5 @@
 
   </mat-card>
 </form>
+
+<pre>{{cambioForm.value | json}}</pre>

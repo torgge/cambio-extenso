@@ -1,7 +1,10 @@
 package com.datapar.cambio.resource;
 
 
+import com.datapar.cambio.model.Cambio;
 import com.datapar.cambio.service.CambioService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,19 +18,34 @@ public class CambioResource {
 
     @Autowired
     CambioService service;
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
+
     //http://ip:port/extenso/v1/guarani/2800000
     @CrossOrigin(origins = { "*", "http://localhost:9797" }, maxAge = 6000)
     @RequestMapping("/guarani/{vlr}")
-    public ResponseEntity<String> getCambioGuarani(@PathVariable("vlr") Double vlr) {
-        String extenso = service.getExtensoGuarani(vlr);
-        return !extenso.isEmpty() ? ResponseEntity.ok(extenso) : ResponseEntity.notFound().build();
+    public ResponseEntity<Cambio> getCambioGuarani(@PathVariable("vlr") double vlr) {
+        Cambio cambio = new Cambio();
+        try {
+            log.info(String.format("Valor %f", vlr));
+            cambio.setExtenso(service.getExtensoGuarani(vlr));
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return !cambio.getExtenso().isEmpty() ? ResponseEntity.ok(cambio) : ResponseEntity.notFound().build();
     }
 
     //http://ip:port/extenso/v1/real/2800000
     @CrossOrigin(origins = { "*", "http://localhost:9797" }, maxAge = 6000)
     @RequestMapping("/real/{vlr}")
-    public ResponseEntity<String> getCambioReal(@PathVariable("vlr") Double vlr) {
-        String extenso = service.getExtensoReal(vlr);
-        return !extenso.isEmpty() ? ResponseEntity.ok(extenso) : ResponseEntity.notFound().build();
+    public ResponseEntity<Cambio> getCambioReal(@PathVariable("vlr") double vlr) {
+        Cambio cambio = new Cambio();
+        try {
+            log.info(String.format("Valor %f", vlr));
+            cambio.setExtenso(service.getExtensoReal(vlr));
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return !cambio.getExtenso().isEmpty() ? ResponseEntity.ok(cambio) : ResponseEntity.notFound().build();
     }
 }

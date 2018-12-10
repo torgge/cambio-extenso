@@ -1,5 +1,6 @@
 package com.datapar.cambio.shared;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.InputMismatchException;
@@ -18,7 +19,7 @@ public class ConversorPyg {
         try {
             vlr = ler.nextDouble();
             System.out.printf("\nValor por extenso:\n");
-            System.out.printf("%s\n", convertNumberToLetter(vlr));
+//            System.out.printf("%s\n", convertNumberToLetter(vlr));
         } catch (InputMismatchException e) {
             System.out.printf("\nErro: valor informado incompatível.\n");
         }
@@ -53,7 +54,7 @@ public class ConversorPyg {
      */
     public String convertNumberToLetter(String number)
             throws NumberFormatException {
-        return convertNumberToLetter(Double.parseDouble(number));
+        return convertNumberToLetter((int) Double.parseDouble(number));
     }
 
     /**
@@ -64,7 +65,7 @@ public class ConversorPyg {
      * @throws NumberFormatException
      * Si el numero esta fuera del rango
      */
-    public String convertNumberToLetter(double doubleNumber)
+    public String convertNumberToLetter(int doubleNumber)
             throws NumberFormatException {
 
         StringBuilder converted = new StringBuilder();
@@ -77,7 +78,7 @@ public class ConversorPyg {
         // formateamos el numero, para ajustarlo a el formato de tres puntos
         // decimales
         String formatedDouble = format.format(doubleNumber);
-        doubleNumber = Double.parseDouble(formatedDouble);
+        doubleNumber = (int) Double.parseDouble(formatedDouble);
 
         // Validamos que sea un numero legal
         if (doubleNumber > 999999999)
@@ -144,12 +145,12 @@ public class ConversorPyg {
             converted.append("**CERO ");
 
         // Descompone los centavos
-        String valor = splitNumber[1];
-        if(valor.length()==1){
-            converted.append(splitNumber[1]).append("0").append("/100 ");
-        }else{
-            converted.append(splitNumber[1]).append("/100 ");
-        }
+//        String valor = splitNumber[1];
+//        if(valor.length()==1){
+//            converted.append(splitNumber[1]).append("0").append("/100 ");
+//        }else{
+//            converted.append(splitNumber[1]).append("/100 ");
+//        }
         converted.append("GUARANIES**");
         return converted.toString();
     }

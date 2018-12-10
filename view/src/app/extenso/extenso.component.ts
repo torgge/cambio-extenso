@@ -2,16 +2,16 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {CambioService} from '../shared/cambio.service';
 import {Observable} from 'rxjs';
-
+import {Cambio} from '../shared/model/Cambio';
 
 @Component({
   selector: 'geo-extenso',
   templateUrl: './extenso.component.html',
-  styleUrls: ['./extenso.component.css'],
+  styleUrls: ['./extenso.component.css']
 })
 export class ExtensoComponent {
-
   extenso$: Observable<any>;
+  private _prefix: string;
 
   cambioForm = this.fb.group({
     moeda: 1,
@@ -19,17 +19,38 @@ export class ExtensoComponent {
     extenso: null
   });
 
-  constructor(private fb: FormBuilder,
-              private service: CambioService) {
+  constructor(private fb: FormBuilder, private service: CambioService) {
   }
 
-  onSubmit() {
+  public getPrefix(): string {
+    return this._prefix;
+  }
 
-    this.extenso$ = this.service.getExtensoGuaraniV2(this.cambioForm.controls['valor'].value);
+  public changePrefix() {
+    const moeda = Number(this.cambioForm.controls['moeda'].value);
+    switch (moeda) {
+      case 0:
+        this._prefix = `U$ `;
+        break;
+      case 1:
+        this._prefix = `G$ `;
+        break;
+      case 2:
+        this._prefix = `R$ `;
+    }
 
-    this.extenso$.subscribe(e => {
-      console.log('extenso', e.toString());
-      this.cambioForm.controls['extenso'].setValue(e);
-    });
+    console.log(`Prefixo`, this._prefix);
+  }
+
+  public onSubmit() {
+    this.service
+      .getExtenso(
+        this.cambioForm.controls['valor'].value,
+        this.cambioForm.controls['moeda'].value,
+      )
+      .subscribe((e: Cambio) => {
+        console.log('Cambio', e);
+        this.cambioForm.controls['extenso'].setValue(e.extenso);
+      });
   }
 }

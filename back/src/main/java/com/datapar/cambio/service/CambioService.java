@@ -12,7 +12,7 @@ public class CambioService {
 
     public String getExtensoGuarani(Double vlr) {
         ConversorPyg conversorPyg = new ConversorPyg();
-        return conversorPyg.convertNumberToLetter(vlr);
+        return conversorPyg.convertNumberToLetter(vlr.intValue());
     }
 
     public String getExtensoReal(Double vlr) {
