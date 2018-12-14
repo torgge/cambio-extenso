@@ -14,7 +14,7 @@ export class CambioService {
               private messageService: MessageService) {
   }
 
-  private rootLocation = `http://172.27.10.43:9797/extenso/v1`;
+  private rootLocation = `https://gentle-depths-52399.herokuapp.com/extenso/v1`;
 
   private garaniLocation = (vlr: number) => this.rootLocation + `/guarani/${vlr}`;
 

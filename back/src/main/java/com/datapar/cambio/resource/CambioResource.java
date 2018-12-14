@@ -22,7 +22,7 @@ public class CambioResource {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     //http://ip:port/extenso/v1/guarani/2800000
-    @CrossOrigin(origins = { "*", "http://localhost:9797" }, maxAge = 6000)
+    @CrossOrigin(origins = { "*" }, maxAge = 6000)
     @RequestMapping("/guarani/{vlr}")
     public ResponseEntity<Cambio> getCambioGuarani(@PathVariable("vlr") double vlr) {
         Cambio cambio = new Cambio();
@@ -36,7 +36,7 @@ public class CambioResource {
     }
 
     //http://ip:port/extenso/v1/real/2800000
-    @CrossOrigin(origins = { "*", "http://localhost:9797" }, maxAge = 6000)
+    @CrossOrigin(origins = { "*" }, maxAge = 6000)
     @RequestMapping("/real/{vlr}")
     public ResponseEntity<Cambio> getCambioReal(@PathVariable("vlr") double vlr) {
         Cambio cambio = new Cambio();
